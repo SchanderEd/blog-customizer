@@ -5,9 +5,9 @@ import styles from './ArticleParamsForm.module.scss';
 import { useRef, useState } from 'react';
 import { Select } from '../select';
 import {
+	OptionType,
 	backgroundColors,
 	contentWidthArr,
-	defaultArticleState,
 	fontColors,
 	fontFamilyOptions,
 	fontSizeOptions,
@@ -16,17 +16,68 @@ import { RadioGroup } from '../radio-group';
 import { Separator } from '../separator';
 import { Text } from '../text';
 
-export const ArticleParamsForm = () => {
-	const [isOpen, setOpen] = useState(false);
+type TArticleParamsForm = {
+	fontSize: OptionType;
+	fontFamily: OptionType;
+	fontColor: OptionType;
+	bgColor: OptionType;
+	contentWidth: OptionType;
+};
+
+export const ArticleParamsForm = (props: TArticleParamsForm) => {
+	const [isOpen, setOpen] = useState(true); // Не забыть поставить false
+
+	const [articleParams, setOption] = useState<TArticleParamsForm>({
+		fontFamily: props.fontFamily,
+		fontSize: props.fontSize,
+		fontColor: props.fontColor,
+		bgColor: props.bgColor,
+		contentWidth: props.contentWidth,
+	});
 
 	const containerRef = useRef<HTMLElement | null>(null);
+
+	const changeFontSize = (option: OptionType) => {
+		setOption({
+			...articleParams,
+			fontSize: option,
+		});
+	};
+
+	const changeFontFamily = (option: OptionType) => {
+		setOption({
+			...articleParams,
+			fontFamily: option,
+		});
+	};
+
+	const changeColorFonts = (option: OptionType) => {
+		setOption({
+			...articleParams,
+			fontColor: option,
+		});
+	};
+
+	const changeBgColor = (option: OptionType) => {
+		setOption({
+			...articleParams,
+			bgColor: option,
+		});
+	};
+
+	const changeWidth = (option: OptionType) => {
+		setOption({
+			...articleParams,
+			contentWidth: option,
+		});
+	};
 
 	const handleClose = (evt: Event) => {
 		containerRef.current?.contains(evt.target as HTMLElement) ||
 		(evt.target as HTMLElement).dataset.target === 'article-openButton' ||
 		(evt.target as HTMLElement).dataset.select === 'select-item'
 			? null
-			: setOpen(false);
+			: 'test'; //setOpen(false); нужно потом расскоментировать
 	};
 
 	const handleOpenChange = (isOpen: boolean) => {
@@ -52,31 +103,36 @@ export const ArticleParamsForm = () => {
 						Задайте параметры
 					</Text>
 					<Select
-						selected={defaultArticleState.fontFamilyOption}
+						selected={articleParams.fontFamily}
 						options={fontFamilyOptions}
 						title='Шрифт'
+						onChange={changeFontFamily}
 					/>
 					<RadioGroup
-						name='Шрифты'
+						name='font-size-group'
 						options={fontSizeOptions}
-						selected={defaultArticleState.fontSizeOption}
+						selected={articleParams.fontSize}
 						title='Размер шрифта'
+						onChange={changeFontSize}
 					/>
 					<Select
-						selected={defaultArticleState.fontColor}
+						selected={articleParams.fontColor}
 						options={fontColors}
 						title='Цвет шрифта'
+						onChange={changeColorFonts}
 					/>
 					<Separator />
 					<Select
-						selected={defaultArticleState.backgroundColor}
+						selected={articleParams.bgColor}
 						options={backgroundColors}
 						title='Цвет фона'
+						onChange={changeBgColor}
 					/>
 					<Select
-						selected={defaultArticleState.contentWidth}
+						selected={articleParams.contentWidth}
 						options={contentWidthArr}
 						title='Ширина контента'
+						onChange={changeWidth}
 					/>
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' type='reset' />

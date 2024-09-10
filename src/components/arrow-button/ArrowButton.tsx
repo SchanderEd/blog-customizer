@@ -1,7 +1,6 @@
 import arrow from 'src/images/arrow.svg';
 
 import styles from './ArrowButton.module.scss';
-import { useRef } from 'react';
 
 /** Функция для обработки открытия/закрытия формы */
 export type OnClick = () => void;
@@ -16,10 +15,6 @@ export const ArrowButton = (props: TArrowButtonProp) => {
 	let { isOpen } = props;
 	const { onOpen } = props;
 	const { dataset } = props;
-
-	const containerRef = useRef<HTMLDivElement | null>(null);
-	const arrowRef = useRef<HTMLImageElement | null>(null);
-
 	const onClickHandler: OnClick = () => {
 		isOpen ? (isOpen = false) : (isOpen = true);
 
@@ -29,7 +24,6 @@ export const ArrowButton = (props: TArrowButtonProp) => {
 	return (
 		/* Не забываем указаывать role и aria-label атрибуты для интерактивных элементов */
 		<div
-			ref={containerRef}
 			onClick={onClickHandler}
 			data-target={dataset}
 			role='button'
@@ -46,7 +40,6 @@ export const ArrowButton = (props: TArrowButtonProp) => {
 					${styles.arrow}
 					${isOpen ? styles.arrow_open : ''}
 				`}
-				ref={arrowRef}
 			/>
 		</div>
 	);

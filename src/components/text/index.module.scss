@@ -9,6 +9,7 @@
 
 .text {
 	@include typography(18, 400, 'Open Sans');
+	pointer-events: none;
 }
 
 .open-sans {

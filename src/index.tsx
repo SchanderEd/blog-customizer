@@ -25,7 +25,13 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm />
+			<ArticleParamsForm
+				fontFamily={defaultArticleState.fontFamilyOption}
+				fontSize={defaultArticleState.fontSizeOption}
+				fontColor={defaultArticleState.fontColor}
+				bgColor={defaultArticleState.backgroundColor}
+				contentWidth={defaultArticleState.contentWidth}
+			/>
 			<Article />
 		</div>
 	);
