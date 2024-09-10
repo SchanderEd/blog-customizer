@@ -1,7 +1,7 @@
 import arrow from 'src/images/arrow.svg';
 
 import styles from './ArrowButton.module.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 /** Функция для обработки открытия/закрытия формы */
 export type OnClick = () => void;
@@ -17,23 +17,11 @@ export const ArrowButton = (props: TArrowButtonProp) => {
 	const { onOpen } = props;
 	const { dataset } = props;
 
-	const [isActive, setActive] = useState(isOpen);
-
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const arrowRef = useRef<HTMLImageElement | null>(null);
 
-	useEffect(() => {
-		isActive
-			? (containerRef.current?.classList.add(styles.container_open),
-			  arrowRef.current?.classList.add(styles.arrow_open))
-			: (containerRef.current?.classList.remove(styles.container_open),
-			  arrowRef.current?.classList.remove(styles.arrow_open));
-	}, [isActive]);
-
 	const onClickHandler: OnClick = () => {
-		isActive
-			? (setActive(false), (isOpen = false))
-			: (setActive(true), (isOpen = true));
+		isOpen ? (isOpen = false) : (isOpen = true);
 
 		onOpen(isOpen);
 	};

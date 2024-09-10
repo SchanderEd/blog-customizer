@@ -2,7 +2,7 @@ import { ArrowButton } from 'components/arrow-button';
 import { Button } from 'components/button';
 
 import styles from './ArticleParamsForm.module.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Select } from '../select';
 import {
 	backgroundColors,
@@ -21,15 +21,10 @@ export const ArticleParamsForm = () => {
 
 	const containerRef = useRef<HTMLElement | null>(null);
 
-	useEffect(() => {
-		isOpen
-			? containerRef.current?.classList.add(styles.container_open)
-			: containerRef.current?.classList.remove(styles.container_open);
-	}, [isOpen]);
-
 	const handleClose = (evt: Event) => {
 		containerRef.current?.contains(evt.target as HTMLElement) ||
-		(evt.target as HTMLElement).dataset.target === 'article-params'
+		(evt.target as HTMLElement).dataset.target === 'article-openButton' ||
+		(evt.target as HTMLElement).dataset.select === 'select-item'
 			? null
 			: setOpen(false);
 	};
@@ -47,9 +42,11 @@ export const ArticleParamsForm = () => {
 			<ArrowButton
 				isOpen={isOpen}
 				onOpen={handleOpenChange}
-				dataset='article-params'
+				dataset='article-openButton'
 			/>
-			<aside className={styles.container} ref={containerRef}>
+			<aside
+				className={`${styles.container} ${isOpen ? styles.container_open : ''}`}
+				ref={containerRef}>
 				<form className={styles.form}>
 					<Text as={'span'} size={31} weight={800} dynamicLite uppercase>
 						Задайте параметры
