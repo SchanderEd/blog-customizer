@@ -41,7 +41,6 @@ export const ArticleParamsForm = (props: TArticleParamsForm) => {
 	});
 
 	const containerRef = useRef<HTMLElement | null>(null);
-	const formRef = useRef<HTMLFormElement | null>(null);
 
 	const changeOption = (option: OptionType) => {
 		switch (option.optionType) {
@@ -122,7 +121,7 @@ export const ArticleParamsForm = (props: TArticleParamsForm) => {
 			<aside
 				className={`${styles.container} ${isOpen ? styles.container_open : ''}`}
 				ref={containerRef}>
-				<form className={styles.form} ref={formRef}>
+				<form className={styles.form}>
 					<Text as={'span'} size={31} weight={800} uppercase>
 						Задайте параметры
 					</Text>
