@@ -1,6 +1,7 @@
 .group {
 	display: inline-flex;
 	box-sizing: border-box;
+	width: 366px;
 	max-width: fit-content;
 	border: 1px solid #000000;
 }
@@ -25,11 +26,12 @@
 	justify-content: center;
 	align-items: center;
 	box-sizing: border-box;
-	width: 124px;
-	height: 35px;
+	width: 121px;
+	height: 34px;
 	text-align: center;
 	border-right: 1px solid #000000;
 	cursor: pointer;
+	transition: background 0.5s ease;
 }
 
 /* Убираем бордер у последнего в radiogroup, чтобы не было двойного бордера */
@@ -40,7 +42,7 @@
 
 .label:hover,
 .item[data-checked='true'] .label:hover {
-	background: var(--gold, #ffc802);
+	background: var(--gold, #ffedab);
 }
 
 .item[data-checked='true'] .label {
@@ -50,5 +52,5 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	row-gap: 4px;
+	row-gap: 5px;
 }

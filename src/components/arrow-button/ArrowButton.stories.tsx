@@ -6,6 +6,10 @@ const meta: Meta<typeof ArrowButton> = {
 	component: ArrowButton,
 };
 
+const test = () => {
+	console.log('test');
+};
+
 export default meta;
 type Story = StoryObj<typeof ArrowButton>;
 
@@ -13,7 +17,7 @@ export const ArrowButtonStory: Story = {
 	render: () => {
 		return (
 			<>
-				<ArrowButton />
+				<ArrowButton isOpen={false} onOpen={test} />
 			</>
 		);
 	},

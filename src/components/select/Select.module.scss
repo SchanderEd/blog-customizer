@@ -11,8 +11,8 @@
 .arrow {
 	position: absolute;
 	top: 50%;
-	right: 6px;
-	margin-top: -12px;
+	right: 16px;
+	margin-top: -13px;
 	transition: transform 0.2s ease-in-out, margin-top 0.2s ease-in-out;
 }
 
@@ -22,11 +22,13 @@
 	align-items: center;
 	box-sizing: border-box;
 	width: 100%;
-	height: 50px;
-	padding: 15px 17px;
+	height: 48px;
+	padding: 15px 24px;
 	background: rgb(255 255 255);
 	outline: 1px solid #000000;
 	cursor: pointer;
+	transition: transform 0.2s ease-in-out, margin-top 0.2s ease-in-out,
+		outline-color 0.2s ease-in-out;
 }
 
 .placeholder[data-selected='true'] {
@@ -39,12 +41,13 @@
 }
 
 .selectWrapper[data-is-active='true'] .placeholder {
-	outline: 3px solid #000000;
+	outline: 1px solid #000000;
 }
 
 .selectWrapper:not([data-is-active='true'])
-	.placeholder:not([data-status='invalid']):hover {
-	outline: 3px solid #000000;
+	.placeholder:not([data-status='invalid']):hover,
+.placeholder:not([data-status='invalid']):focus {
+	outline: 1px solid var(--gold, #ffc802);
 }
 
 .select {
@@ -71,6 +74,7 @@
 	background-color: rgb(255 255 255 / 100%);
 	border: 1px;
 	cursor: pointer;
+	transition: background 0.5s ease, background-color 0.5s ease;
 }
 
 .option[aria-selected='true'] {
@@ -78,13 +82,17 @@
 }
 
 .option:hover {
-	background: var(--grey, #c4c4c4);
+	background: var(--grey, #eeeeee);
+}
+
+.option:active {
+	background: #d7d7d7;
 }
 
 @mixin option-color-before {
 	content: '';
-	width: 35px;
-	height: 35px;
+	width: 24px;
+	height: 24px;
 	margin-right: 10px;
 }
 
@@ -96,9 +104,9 @@
 @mixin option-color-after {
 	content: '';
 	position: absolute;
-	left: 26px;
-	width: 17px;
-	height: 17px;
+	left: 33px;
+	width: 8px;
+	height: 8px;
 	border-radius: 100%;
 }
 
