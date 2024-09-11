@@ -1,7 +1,7 @@
 .group {
 	display: inline-flex;
 	box-sizing: border-box;
-	width: 368px;
+	width: 366px;
 	max-width: fit-content;
 	border: 1px solid #000000;
 }
@@ -26,7 +26,7 @@
 	justify-content: center;
 	align-items: center;
 	box-sizing: border-box;
-	width: 122px;
+	width: 121px;
 	height: 34px;
 	text-align: center;
 	border-right: 1px solid #000000;
@@ -52,5 +52,5 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	row-gap: 4px;
+	row-gap: 5px;
 }
